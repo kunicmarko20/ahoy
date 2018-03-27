@@ -1,0 +1,34 @@
+security:
+    role_hierarchy:
+        ROLE_USER: [ROLE_USER]
+        ROLE_MODERATOR: [ROLE_MODERATOR, ROLE_USER]
+
+    encoders:
+        App\Entity\User: bcrypt
+
+    providers:
+        default:
+            entity:
+                class: App\Entity\User
+                property: email
+
+    firewalls:
+        dev:
+            pattern:  ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+        main:
+            anonymous: ~
+            form_login:
+                login_path: login
+                check_path: login
+                provider: default
+                username_parameter: login[email]
+                password_parameter: login[password]
+            logout:
+                path:   /logout
+                target: /job-offer/create
+
+    access_control:
+        - { path: '^/job-offer/(\d+)/', role: [ROLE_MODERATOR] }
+
+        - { path: ^/.*, role: IS_AUTHENTICATED_ANONYMOUSLY }

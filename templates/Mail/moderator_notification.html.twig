@@ -1,0 +1,10 @@
+Title: {{ jobOffer.title }}
+<br/>
+Description: {{ jobOffer.description }}
+<br/>
+<a href="{{ path('app_job_offer_approve', {'id': jobOffer.id}) }}">
+    Approve
+</a>
+<a href="{{ path('app_job_offer_spam', {'id': jobOffer.id}) }}">
+    Mark as Spam
+</a>

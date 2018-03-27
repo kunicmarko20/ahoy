@@ -1,0 +1,25 @@
+language: php
+
+php:
+  - '7.1'
+  - '7.2'
+  - nightly
+
+env:
+  global:
+    - TARGET=test
+
+matrix:
+  include:
+    - php: '7.1'
+      env: TARGET=stan
+  fast_finish: true
+
+  allow_failures:
+    - php: nightly
+
+install:
+  - if [ -x .travis/install_${TARGET}.sh ]; then .travis/install_${TARGET}.sh; fi;
+
+script:
+  - if [ -x .travis/script_${TARGET}.sh ]; then .travis/script_${TARGET}.sh; fi;

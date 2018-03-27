@@ -1,0 +1,19 @@
+app_job_offer_create:
+    path: /job-offer/create
+    controller: App\Controller\JobOfferController::create
+
+app_job_offer_approve:
+    path: /job-offer/{id}/approve
+    controller: App\Controller\JobOfferController::changeStatus
+    requirements:
+        id: '\d+'
+    defaults:
+        status: 1
+
+app_job_offer_spam:
+    path: /job-offer/{id}/spam
+    controller: App\Controller\JobOfferController::changeStatus
+    requirements:
+        id: '\d+'
+    defaults:
+        status: 2

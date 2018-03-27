@@ -1,0 +1,7 @@
+services:
+    _defaults:
+        public: true
+
+    Tests\App\DataFixtures\:
+        resource: '../tests/DataFixtures'
+        tags: ['doctrine.fixture.orm']

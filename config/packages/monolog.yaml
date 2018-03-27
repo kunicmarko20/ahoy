@@ -1,0 +1,8 @@
+monolog:
+    channels: ['mail']
+    handlers:
+        mail:
+            type: stream
+            path: "%kernel.logs_dir%/mail.log"
+            level: debug
+            channels: [mail]
